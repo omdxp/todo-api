@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/omdxp/todo-api/data"
 )
 
@@ -11,6 +12,9 @@ type Response struct {
 
 func main() {
 	app := fiber.New()
+
+	// CORS
+	app.Use(cors.New(cors.ConfigDefault))
 
 	app.Get("/todos", GetTodos)
 	app.Get("/todos/:id", GetTodo)
